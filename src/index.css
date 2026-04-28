@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-sans bg-background text-content antialiased;
+    font-size: 15px;
+    line-height: 1.45;
+  }
+}
+
+@layer components {
+  .dashboard-card {
+    @apply bg-surface rounded-3xl border border-gray-100 shadow-[0_4px_20px_-8px_rgba(0,0,0,0.05)];
+  }
+  
+  .icon-wrapper {
+    @apply flex items-center justify-center rounded-xl transition-all duration-200;
+  }
+
+  .nav-item {
+    @apply flex items-center gap-3 px-4 py-2.5 rounded-xl text-gray-500 hover:bg-primary-50 hover:text-primary transition-all duration-200 text-sm font-medium;
+  }
+
+  .nav-item-active {
+    @apply flex items-center gap-3 px-4 py-2.5 rounded-xl bg-primary-50 text-primary transition-all duration-200 text-sm font-medium;
+  }
+}
+
+/* Custom scrollbar for a cleaner look */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-200 rounded-full hover:bg-gray-300 transition-colors;
+}
