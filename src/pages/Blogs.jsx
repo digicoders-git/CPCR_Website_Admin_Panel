@@ -5,8 +5,8 @@ import { Plus, Trash2, Edit3, Save, X, Image as ImageIcon, Loader2 } from 'lucid
 import axios from 'axios';
 import ConfirmModal from '../components/common/ConfirmModal';
 
-const API_URL = import.meta.env.VITE_API_URL + '/api/blogs';
-const BASE_URL = import.meta.env.VITE_API_URL;
+const BASE_URL = (import.meta.env.VITE_API_URL || 'http://localhost:5000').replace(/\/$/, '');
+const API_URL = `${BASE_URL}/api/blogs`;
 
 const Blogs = () => {
   const [blogs, setBlogs] = useState([]);

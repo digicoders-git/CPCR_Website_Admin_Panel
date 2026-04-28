@@ -28,7 +28,8 @@ const Login = ({ onLogin }) => {
     setError('');
 
     try {
-      const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/login`, { email, password });
+      const API_URL = (import.meta.env.VITE_API_URL || 'http://localhost:5000').replace(/\/$/, '');
+      const res = await axios.post(`${API_URL}/api/auth/login`, { email, password });
       localStorage.setItem('token', res.data.token);
       localStorage.setItem('admin_panel_user', JSON.stringify(res.data.user));
       onLogin(res.data.user);

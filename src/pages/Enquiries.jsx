@@ -3,7 +3,7 @@ import { Trash2, Loader2, Mail, Phone, User, Clock, MessageSquare, CheckCircle2,
 import axios from 'axios';
 import ConfirmModal from '../components/common/ConfirmModal';
 
-const API_URL = import.meta.env.VITE_API_URL + '/api/enquiries';
+const API_URL = (import.meta.env.VITE_API_URL || 'http://localhost:5000').replace(/\/$/, '') + '/api/enquiries';
 
 const Enquiries = () => {
   const [enquiries, setEnquiries] = useState([]);
