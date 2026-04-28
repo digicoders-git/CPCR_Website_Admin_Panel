@@ -46,16 +46,22 @@ const Sidebar = ({ isSidebarOpen, setSidebarOpen, handleLogout }) => {
             <p className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] px-2 mb-4 opacity-70">Admin Panel</p>
             <div className="space-y-1.5">
               <NavItem 
-                icon={Mail} 
+                icon={Boxes} 
                 label="Manage Blogs" 
                 active={isPathActive('/blogs')} 
                 onClick={() => navigate('/blogs')} 
               />
               <NavItem 
-                icon={Boxes} 
+                icon={LayoutDashboard} 
                 label="Manage Assignments" 
                 active={isPathActive('/assignments')} 
                 onClick={() => navigate('/assignments')} 
+              />
+              <NavItem 
+                icon={Mail} 
+                label="Enquiries" 
+                active={isPathActive('/enquiries')} 
+                onClick={() => navigate('/enquiries')} 
               />
               <NavItem 
                 icon={UserCircle} 

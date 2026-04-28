@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import AdminLayout from './layouts/AdminLayout';
 import Blogs from './pages/Blogs';
 import Assignments from './pages/Assignments';
+import Enquiries from './pages/Enquiries';
 import Login from './pages/Login';
 import Profile from './pages/Profile';
 import Register from './pages/Register';
@@ -51,6 +52,7 @@ const App = () => {
           <Route index element={<Navigate to="/blogs" />} />
           <Route path="blogs" element={<Blogs />} />
           <Route path="assignments" element={<Assignments />} />
+          <Route path="enquiries" element={<Enquiries />} />
           <Route path="profile" element={<Profile user={user} onUpdate={handleLogin} />} />
         </Route>
 
