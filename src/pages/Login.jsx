@@ -28,7 +28,7 @@ const Login = ({ onLogin }) => {
     setError('');
 
     try {
-      const API_URL = (import.meta.env.VITE_API_URL || 'http://localhost:5000').replace(/\/$/, '');
+      const API_URL = (import.meta.env.VITE_API_URL || 'https://cpcr-website-backend.onrender.com').replace(/\/$/, '');
       const res = await axios.post(`${API_URL}/api/auth/login`, { email, password });
       localStorage.setItem('token', res.data.token);
       localStorage.setItem('admin_panel_user', JSON.stringify(res.data.user));
