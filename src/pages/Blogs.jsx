@@ -70,11 +70,16 @@ const Blogs = () => {
       formData.append('img', currentBlog.img);
     }
 
+    const token = localStorage.getItem('token');
     try {
       if (currentBlog._id) {
-        await axios.put(`${API_URL}/${currentBlog._id}`, formData);
+        await axios.put(`${API_URL}/${currentBlog._id}`, formData, {
+          headers: { Authorization: `Bearer ${token}` }
+        });
       } else {
-        await axios.post(API_URL, formData);
+        await axios.post(API_URL, formData, {
+          headers: { Authorization: `Bearer ${token}` }
+        });
       }
       fetchBlogs();
       setIsEditing(false);
@@ -101,8 +106,11 @@ const Blogs = () => {
 
   const handleDelete = async () => {
     if (!deleteId) return;
+    const token = localStorage.getItem('token');
     try {
-      await axios.delete(`${API_URL}/${deleteId}`);
+      await axios.delete(`${API_URL}/${deleteId}`, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
       fetchBlogs();
     } catch (err) {
       console.error('Error deleting blog:', err);
