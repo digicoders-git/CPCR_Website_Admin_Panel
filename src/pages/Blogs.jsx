@@ -19,6 +19,14 @@ const Blogs = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(null);
 
+  const getImageUrl = (img) => {
+    if (!img) return '';
+    if (img.startsWith('http')) return img;
+    const cleanBaseUrl = BASE_URL.replace(/\/$/, '');
+    const cleanImgPath = img.startsWith('/') ? img : `/${img}`;
+    return `${cleanBaseUrl}${cleanImgPath}`;
+  };
+
   useEffect(() => {
     fetchBlogs();
   }, []);
@@ -255,7 +263,7 @@ const Blogs = () => {
             <div key={blog._id} className="bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-all group overflow-hidden flex flex-col">
               <div className="h-48 overflow-hidden relative">
                 <img 
-                  src={blog.img.startsWith('http') ? blog.img : `${BASE_URL}${blog.img}`} 
+                  src={getImageUrl(blog.img)} 
                   alt={blog.title} 
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" 
                 />

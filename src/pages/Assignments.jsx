@@ -13,6 +13,15 @@ const Assignments = () => {
   const [saving, setSaving] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [deleteId, setDeleteId] = useState(null);
+  
+  const getImageUrl = (img) => {
+    if (!img) return '';
+    if (img.startsWith('http')) return img;
+    const cleanBaseUrl = BASE_URL.replace(/\/$/, '');
+    const cleanImgPath = img.startsWith('/') ? img : `/${img}`;
+    return `${cleanBaseUrl}${cleanImgPath}`;
+  };
+
   const [currentAssignment, setCurrentAssignment] = useState({ 
     title: '', 
     location: '', 
@@ -289,7 +298,7 @@ const Assignments = () => {
             <div key={item._id} className="bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-all group overflow-hidden flex flex-col">
               <div className="h-48 overflow-hidden relative">
                 <img 
-                  src={item.img.startsWith('http') ? item.img : `${BASE_URL}${item.img}`} 
+                  src={getImageUrl(item.img)} 
                   alt={item.title} 
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" 
                 />
