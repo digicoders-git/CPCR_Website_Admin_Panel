@@ -115,12 +115,17 @@ const Blogs = () => {
     if (!deleteId) return;
     const token = localStorage.getItem('token');
     try {
+      console.log(`Attempting to delete blog at: ${API_URL}/${deleteId}`);
       await axios.delete(`${API_URL}/${deleteId}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       fetchBlogs();
+      setShowDeleteModal(false);
+      setDeleteId(null);
     } catch (err) {
-      console.error('Error deleting blog:', err);
+      console.error('Delete Error details:', err.response || err);
+      const errorMsg = err.response?.data?.message || err.response?.statusText || 'Failed to delete blog';
+      alert(`Error: ${errorMsg} (Status: ${err.response?.status})`);
     }
   };
 

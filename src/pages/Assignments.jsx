@@ -73,6 +73,11 @@ const Assignments = () => {
     formData.append('description', description);
     
     const token = localStorage.getItem('token');
+    if (!token) {
+      alert('Your session has expired. Please log in again.');
+      setSaving(false);
+      return;
+    }
 
     if (selectedFile) {
       formData.append('image', selectedFile);
@@ -95,7 +100,8 @@ const Assignments = () => {
       resetForm();
     } catch (err) {
       console.error('Error saving assignment:', err);
-      alert('Failed to save assignment');
+      const errorMsg = err.response?.data?.message || 'Failed to save assignment';
+      alert(`Error: ${errorMsg}`);
     } finally {
       setSaving(false);
     }
@@ -128,8 +134,12 @@ const Assignments = () => {
         headers: { Authorization: `Bearer ${token}` }
       });
       fetchAssignments();
+      setShowDeleteModal(false);
+      setDeleteId(null);
     } catch (err) {
       console.error('Error deleting assignment:', err);
+      const errorMsg = err.response?.data?.message || 'Failed to delete assignment';
+      alert(`Error: ${errorMsg}`);
     }
   };
 

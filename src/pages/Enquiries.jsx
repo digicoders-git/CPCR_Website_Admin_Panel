@@ -38,6 +38,8 @@ const Enquiries = () => {
       fetchEnquiries();
     } catch (err) {
       console.error('Error updating status:', err);
+      const errorMsg = err.response?.data?.message || 'Failed to update status';
+      alert(`Error: ${errorMsg}`);
     }
   };
 
@@ -49,8 +51,12 @@ const Enquiries = () => {
         headers: { Authorization: `Bearer ${token}` }
       });
       fetchEnquiries();
+      setShowDeleteModal(false);
+      setDeleteId(null);
     } catch (err) {
       console.error('Error deleting enquiry:', err);
+      const errorMsg = err.response?.data?.message || 'Failed to delete enquiry';
+      alert(`Error: ${errorMsg}`);
     }
   };
 
