@@ -3,7 +3,8 @@ import { Trash2, Loader2, Mail, Phone, User, Clock, MessageSquare, CheckCircle2,
 import axios from 'axios';
 import ConfirmModal from '../components/common/ConfirmModal';
 
-const API_URL = (import.meta.env.VITE_API_URL || 'https://cpcr-website-backend.onrender.com').replace(/\/$/, '') + '/api/enquiries';
+const BASE_URL = (import.meta.env.VITE_API_URL || 'https://cpcr-website-backend.onrender.com').replace(/\/$/, '');
+const API_URL = `${BASE_URL}/api/enquiries`;
 
 const Enquiries = () => {
   const [enquiries, setEnquiries] = useState([]);
