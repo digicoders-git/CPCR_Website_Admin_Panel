@@ -219,7 +219,7 @@ const Assignments = () => {
                     type="text" 
                     value={currentAssignment.location}
                     onChange={(e) => setCurrentAssignment({ ...currentAssignment, location: e.target.value })}
-                    placeholder="e.g. Rajasthan | 2025"
+                    placeholder="e.g. Lucknow | 2025"
                     className="w-full pl-12 pr-5 py-4 rounded-xl border border-gray-200 focus:border-primary outline-none transition-all font-bold"
                   />
                 </div>
