@@ -14,7 +14,9 @@ const App = () => {
   const [user, setUser] = useState(() => {
     try {
       const storedUser = localStorage.getItem(USER_STORAGE_KEY);
-      return storedUser ? JSON.parse(storedUser) : null;
+      const token = localStorage.getItem('token');
+      // Require both user data and token to be considered logged in
+      return (storedUser && token) ? JSON.parse(storedUser) : null;
     } catch {
       return null;
     }

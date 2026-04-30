@@ -71,6 +71,12 @@ const Blogs = () => {
     }
 
     const token = localStorage.getItem('token');
+    if (!token) {
+      alert('Your session has expired. Please log in again.');
+      setSaving(false);
+      return;
+    }
+
     try {
       if (currentBlog._id) {
         await axios.put(`${API_URL}/${currentBlog._id}`, formData, {
@@ -86,7 +92,8 @@ const Blogs = () => {
       resetForm();
     } catch (err) {
       console.error('Error saving blog:', err);
-      alert('Failed to save blog');
+      const errorMsg = err.response?.data?.message || 'Failed to save blog';
+      alert(`Error: ${errorMsg}`);
     } finally {
       setSaving(false);
     }
